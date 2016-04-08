@@ -25,6 +25,7 @@ this.state = { url: '' }
           <li><Link      to="ab"           activeStyle={ACTIVE}>About</Link></li>
           <li><Link      to="fl"           activeStyle={ACTIVE}>FriendList</Link></li>
           <li><Link      to="md"           activeStyle={ACTIVE}>Mrkdown</Link></li>
+          <li><Link      to="mp"           activeStyle={ACTIVE}>Map</Link></li>
      </ul>
       </div>
     );

@@ -7,6 +7,7 @@ import FriendListApp from './containers/FriendListApp/FriendListApp';
 import {ConnectedDocs, DocsApp} from './containers/DocsApp/DocsApp';
 import About from './containers/AboutApp/AboutApp';
 import Mrkdown from './containers/MrkdownApp/MrkdownApp';
+import LMap from './containers/Map/Map.js';
 import NotFoundView from './views/NotFoundView';
 
 let route1 = (
@@ -18,6 +19,7 @@ let route1 = (
             <IndexRoute component={About} />
         </Route>
         <Route path="fl" component={FriendListApp} ></Route>   
+        <Route path="mp" component={LMap}/>
         <Route path="md" component={App} >
             <IndexRoute component={Mrkdown} />
         </Route>       
