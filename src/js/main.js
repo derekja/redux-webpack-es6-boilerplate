@@ -6,7 +6,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore  from './store/configureStore';
 import { Router, browserHistory, hashHistory } from 'react-router';
-import Subdivide, { reducer as subdivide } from 'subdivide';
 import { connect } from 'react-redux';
 
 
@@ -37,25 +36,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 
-class SComponent extends Component {
-    render() {
-        return (
-            ComponentEl
-        )
-    }
-    
-}
-
-const CComponent = connect(
-    state => ({ subdivide: state.subdivide })
-)(Subdivide);
-
-
-
 // Render the React application to the DOM
 ReactDOM.render(
   <Provider store={store}>
-    <CComponent DefaultComponent={SComponent} />
+    {ComponentEl}
   </Provider>,
   rootElement
 );

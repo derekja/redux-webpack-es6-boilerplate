@@ -1,12 +1,12 @@
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM, { render } from 'react-dom';
 
 import L from 'leaflet' ;
 import BorderPan from './Map.BorderPan'
 // here's the actual component
 var LeafletMap = React.createClass({
     componentDidMount: function() {
-        var map = this.map = L.map(this.getDOMNode(), {
+        var map = this.map = L.map(ReactDOM.findDOMNode(this), {
             minZoom: 2,
             maxZoom: 20,
             layers: [
