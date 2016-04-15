@@ -4,7 +4,7 @@ import { Router, Route, IndexRoute, Redirect, browserHistory, hashHistory } from
 import App from './components/app';
 import Chooser from './components/chooser';
 import FriendListApp from './containers/FriendListApp/FriendListApp';
-import {ConnectedDocs, DocsApp} from './containers/DocsApp/DocsApp';
+import {DocsApp} from './containers/DocsApp/DocsApp';
 import About from './containers/AboutApp/AboutApp';
 import Mrkdown from './containers/MrkdownApp/MrkdownApp';
 import LMap from './containers/Map/Map.js';
