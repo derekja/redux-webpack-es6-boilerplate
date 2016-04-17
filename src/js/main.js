@@ -92,7 +92,7 @@ myLayout.init();
 ReactDOM.render(
   <Provider store={store}>
 
-    <MyFirstGrid/>
+    <myLayout/>
   </Provider>,
   rootElement
 );
