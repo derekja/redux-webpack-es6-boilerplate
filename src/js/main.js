@@ -1,5 +1,8 @@
+'use strict';
 import '../styles/bootstrap.min.css';
 import '../styles/styles.scss';
+import '../../node_modules/react-grid-layout/node_modules/react-resizable/css/styles.css';
+import '../../node_modules/react-grid-layout/css/styles.css';
 
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
@@ -8,10 +11,11 @@ import configureStore  from './store/configureStore';
 import { Router, browserHistory, hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 
-
+var ReactGridLayout = require('react-grid-layout');
 import routes from './routes';
 
 const GoldenLayout = require('imports?React=react&ReactDOM=react-dom!golden-layout');
+
 
 const store = configureStore();
 const rootElement = document.getElementById('app');
@@ -74,7 +78,8 @@ myLayout.init();
 // Render the React application to the DOM
 ReactDOM.render(
   <Provider store={store}>
-    <myLayout/>
+
+    <MyFirstGrid/>
   </Provider>,
   rootElement
 );
