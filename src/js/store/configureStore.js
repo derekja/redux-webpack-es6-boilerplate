@@ -19,9 +19,9 @@ export default function configureStore(initialState) {
 
       // Middleware we want to use in development
       middleware,
-      window.devToolsExtension ?
-        window.devToolsExtension() :
-        require('../containers/DevTools').default.instrument(),
+      //window.devToolsExtension ?
+        //window.devToolsExtension() :
+        //require('../containers/DevTools').default.instrument(),
 
       // Optional. Lets you write ?debug_session=<key> in address bar to persist debug sessions
       persistState(getDebugSessionKey())

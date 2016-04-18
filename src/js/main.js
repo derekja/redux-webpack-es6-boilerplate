@@ -9,12 +9,10 @@ import configureStore  from './store/configureStore';
 import { Router, browserHistory, hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 
-import MenuBar from './components/menubar';
-import About from './containers/AboutApp/AboutApp';
-import Mrkdown from './containers/MrkdownApp/MrkdownApp';
-import LMap from './containers/Map/Map.js';
 
-import routes from './routes';
+import About from './containers/About/About';
+import Mrkdown from './containers/Mrkdown/Mrkdown';
+import LMap from './containers/Map/Map.js';
 
 const GoldenLayout = require('imports?React=react&ReactDOM=react-dom!golden-layout');
 
@@ -22,25 +20,6 @@ const GoldenLayout = require('imports?React=react&ReactDOM=react-dom!golden-layo
 const store = configureStore();
 const rootElement = document.getElementById('app');
 
-let ComponentEl;
-
-if (process.env.NODE_ENV !== 'production') {
-  const DevTools = require('./containers/DevTools').default;
-
-  // If using routes
-  ComponentEl = (
-    <div>
-      {routes}
-      <DevTools />
-    </div>
-  );
-} else {
-  ComponentEl = (
-    <div>
-      <Router history={browserHistory} routes={routes} />
-    </div>
-  );
-}
 
 class testComponent extends Component {
     render() {
