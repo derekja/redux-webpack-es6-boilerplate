@@ -21,6 +21,8 @@ const GoldenLayout = require('imports?React=react&ReactDOM=react-dom!golden-layo
 
 const store = configureStore();
 const rootElement = document.getElementById('app');
+const headerElement = document.getElementById('header');
+const layoutElement = document.getElementById('layout');
 
 let ComponentEl;
 
@@ -87,7 +89,7 @@ var myLayout = new GoldenLayout({
             }]
         }]
     }]
-});
+}, rootElement);
 
 myLayout.registerComponent( 'TestComponent', testComponent );
 myLayout.registerComponent( 'About', AboutComp );
@@ -98,13 +100,14 @@ myLayout.registerComponent( 'LMap', LMap );
 myLayout.init();
 
 // Render the React application to the DOM
-//   <div className='mainContainer'>  <MenuBar/> </div> 
+//     
+
 ReactDOM.render(
   <Provider store={store}>
-
-
-    <myLayout/>
-
+    <div className='mainContainer'> 
+      <p>this is a test</p>
+      <myLayout/>
+    </div> 
   </Provider>,
   rootElement
 );

@@ -1,6 +1,7 @@
 body {
   display: flex;
   flex-direction: row;
+  height: 1000px;
   background: #f1f1f1;
   padding-top: 30px;
 }
@@ -8,7 +9,9 @@ body {
   height: 900px;
   width: 900px;
 }
-
+.app {
+  height: 1000px;
+}
 .mainContainer {
   display: flex;
   flex-direction: row;
