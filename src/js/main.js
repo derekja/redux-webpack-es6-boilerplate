@@ -39,6 +39,10 @@ var MrkdownComp = function(container) {
   ReactDOM.render(<Mrkdown/>, mrk);
 }
 
+var MapComp = function(container) {
+    var map = container.getElement()[ 0 ];
+  ReactDOM.render(<LMap/>, map);  
+}
 
 var myLayout = new GoldenLayout({
     settings: {
@@ -71,7 +75,7 @@ var myLayout = new GoldenLayout({
 myLayout.registerComponent( 'TestComponent', testComponent );
 myLayout.registerComponent( 'About', AboutComp );
 myLayout.registerComponent( 'Mrkdown', MrkdownComp );
-myLayout.registerComponent( 'LMap', LMap );
+myLayout.registerComponent( 'LMap', MapComp );
 
 //Once all components are registered, call
 myLayout.init();
