@@ -9,6 +9,7 @@ import configureStore  from './store/configureStore';
 import { Router, browserHistory, hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 
+import MenuBar from './components/menubar';
 import About from './containers/AboutApp/AboutApp';
 import Mrkdown from './containers/MrkdownApp/MrkdownApp';
 import LMap from './containers/Map/Map.js';
@@ -48,14 +49,22 @@ class testComponent extends Component {
     }
 }
 
-
 var AboutComp = function(container) {
   var abt = container.getElement()[ 0 ];
   ReactDOM.render(<About/>, abt);
   
-};
+}
+
+var MrkdownComp = function(container) {
+  var mrk = container.getElement()[ 0 ];
+  ReactDOM.render(<Mrkdown/>, mrk);
+}
+
 
 var myLayout = new GoldenLayout({
+    settings: {
+      showPopoutIcon: false
+    },
     content: [{
         type: 'row',
         content:[{
@@ -82,17 +91,20 @@ var myLayout = new GoldenLayout({
 
 myLayout.registerComponent( 'TestComponent', testComponent );
 myLayout.registerComponent( 'About', AboutComp );
-myLayout.registerComponent( 'Mrkdown', Mrkdown );
+myLayout.registerComponent( 'Mrkdown', MrkdownComp );
 myLayout.registerComponent( 'LMap', LMap );
 
 //Once all components are registered, call
 myLayout.init();
 
 // Render the React application to the DOM
+//   <div className='mainContainer'>  <MenuBar/> </div> 
 ReactDOM.render(
   <Provider store={store}>
 
+
     <myLayout/>
+
   </Provider>,
   rootElement
 );
