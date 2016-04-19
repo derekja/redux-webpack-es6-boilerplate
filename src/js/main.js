@@ -61,6 +61,10 @@ var MrkdownComp = function(container) {
 }
 
 
+var MapComp = function(container) {
+  var m = container.getElement()[ 0 ];
+  ReactDOM.render(<LMap/>, m);
+}
 var myLayout = new GoldenLayout({
     settings: {
       showPopoutIcon: false
@@ -92,7 +96,7 @@ var myLayout = new GoldenLayout({
 myLayout.registerComponent( 'TestComponent', testComponent );
 myLayout.registerComponent( 'About', AboutComp );
 myLayout.registerComponent( 'Mrkdown', MrkdownComp );
-myLayout.registerComponent( 'LMap', LMap );
+myLayout.registerComponent( 'LMap', MapComp );
 
 //Once all components are registered, call
 myLayout.init();
