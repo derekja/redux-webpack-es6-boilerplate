@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom';
 
 import L from 'leaflet' ;
 import BorderPan from './Map.BorderPan'
+
+import './Map.scss';
 // here's the actual component
 var LeafletMap = React.createClass({
+    
     componentDidMount: function() {
         var map = this.map = L.map(ReactDOM.findDOMNode(this), {
             minZoom: 2,
@@ -16,10 +19,15 @@ var LeafletMap = React.createClass({
             ],
             attributionControl: false,
         });
-      L.control.zoom({ position: "bottomleft"}).addTo(map);
-    L.control.scale({ position: "bottomleft"}).addTo(map);
-        map.on('click', this.onMapClick);
+      map.setView([45.5200,-122.6716007], 13);   
+     // L.control.zoom({ position: "bottomright"}).addTo(map);
+      map.locate({setView: true, maxZoom: 16});
+      map.zoomControl.setPosition('topright');
+   // L.control.scale({ position: "topright"}).addTo(map);
+   // L.control.fullscreen().addTo(map);
+     //   map.on('click', this.onMapClick);
         
+        map.invalidateSize();
         map.fitWorld();
                
     },
@@ -29,8 +37,10 @@ var LeafletMap = React.createClass({
     },
     onMapClick: function() {
         // Do some wonderful map things...
+         map.invalidateSize();
     },
-   
+    
+   /*
      zoomToFeature: function(target) {
     // pad fitBounds() so features aren't hidden under the Filter UI element
     var fitBoundsParams = {
@@ -39,7 +49,7 @@ var LeafletMap = React.createClass({
     };
     map.fitBounds(target.getBounds(), fitBoundsParams);
   },
-  
+  */
    
     render: function() {
         return (
