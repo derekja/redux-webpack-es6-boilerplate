@@ -20,6 +20,14 @@ class Code extends Component {
           code: newCode
       });
   }
+  
+  componentDidMount = () => {
+      
+      //console.log(this.refs);
+      //console.log(this.refs.editor.codeMirror);
+      this.refs.editor.codeMirror.refresh();
+      
+  }
   render() {
       var options = {
           lineNumbers: true
