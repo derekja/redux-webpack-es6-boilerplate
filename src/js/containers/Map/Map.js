@@ -23,8 +23,9 @@ var osmMap = L.tileLayer(osmUrl, {attribution: osmAttrib}), landMap = L.tileLaye
             minZoom: 2,
             maxZoom: 20,
             layers: [
-       L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        {attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'})
+     //  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+     //   {attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'})
+          osmMap
             ],
             attributionControl: false,
         });
@@ -34,11 +35,11 @@ var osmMap = L.tileLayer(osmUrl, {attribution: osmAttrib}), landMap = L.tileLaye
 	"OSM Mapnik": osmMap,
 	"Landscape": landMap
 };  
-//L.control.layers(baseLayers).addTo(map);
+L.control.layers(baseLayers).addTo(map);
      // L.control.zoom({ position: "bottomright"}).addTo(map);
      // map.locate({setView: true, maxZoom: 16});
       map.zoomControl.setPosition('topright');
-    L.control.scale({ position: "topright"}).addTo(map);
+  //  L.control.scale({ position: "topright"}).addTo(map);
    // L.control.fullscreen().addTo(map);
      //   map.on('click', this.onMapClick);
         
