@@ -63,6 +63,7 @@
   "dependencies": {
     "autoprefixer": "6.3.3",
     "classnames": "2.2.3",
+    "codemirror": "5.13.4",
     "golden-layout": "1.5.1",
     "jquery": "2.2.3",
     "json-loader": "0.5.4",
