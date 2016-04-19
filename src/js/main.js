@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 
 
 import About from './containers/About/About';
+import Code from './containers/Code/Code';
 import Mrkdown from './containers/Mrkdown/Mrkdown';
 import LMap from './containers/Map/Map.js';
 
@@ -21,11 +22,10 @@ const store = configureStore();
 const rootElement = document.getElementById('app');
 
 
-class testComponent extends Component {
-    render() {
-        
-        return (<h3><i>{this.state.label}foo</i></h3>)
-    }
+var CodeComp = function(container) {
+  var code = container.getElement()[ 0 ];
+  ReactDOM.render(<Code/>, code);
+  
 }
 
 var AboutComp = function(container) {
@@ -67,12 +67,17 @@ var myLayout = new GoldenLayout({
                 componentName: 'LMap',
                 title: 'item C',
                 props: { label: 'C' }
+            },{
+                type:'component',
+                componentName: 'Code',
+                title: 'item D',
+                props: { label: 'D' }
             }]
         }]
     }]
 });
 
-myLayout.registerComponent( 'TestComponent', testComponent );
+myLayout.registerComponent( 'Code', CodeComp );
 myLayout.registerComponent( 'About', AboutComp );
 myLayout.registerComponent( 'Mrkdown', MrkdownComp );
 myLayout.registerComponent( 'LMap', MapComp );
