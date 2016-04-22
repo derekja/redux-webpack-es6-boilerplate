@@ -2,11 +2,11 @@
 import '../styles/bootstrap.min.css';
 import '../styles/styles.scss';
 
+
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore  from './store/configureStore';
-import { Router, browserHistory, hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 
 
@@ -84,15 +84,17 @@ myLayout.registerComponent( 'Mrkdown', MrkdownComp );
 myLayout.registerComponent( 'LMap', MapComp );
 
 //Once all components are registered, call
-//myLayout.init();
+myLayout.init();
 
 // Render the React application to the DOM
 //   <div className='mainContainer'>  <MenuBar/> </div> 
 ReactDOM.render(
   <Provider store={store}>
 
-
+  <div>
+    <myLayout/>
     <Navbar/>
+   </div>
 
   </Provider>,
   rootElement
