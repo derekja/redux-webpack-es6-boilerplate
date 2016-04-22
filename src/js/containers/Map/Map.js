@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import L from 'leaflet' ;
-import BorderPan from './Map.BorderPan'
+import  Ldraw from 'leaflet-draw';
+import BorderPan from './Map.BorderPan' ;
 
 import './Map.scss';
 // here's the actual component
@@ -20,6 +21,7 @@ var osmMap = L.tileLayer(osmUrl, {attribution: osmAttrib}), landMap = L.tileLaye
         
         
         var map = this.map = L.map(ReactDOM.findDOMNode(this), {
+            
             minZoom: 2,
             maxZoom: 20,
             layers: [
@@ -35,6 +37,16 @@ var osmMap = L.tileLayer(osmUrl, {attribution: osmAttrib}), landMap = L.tileLaye
 	"OSM Mapnik": osmMap,
 	"Landscape": landMap
 };  
+
+
+var drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+
+        var drawControl = new L.Control.Draw({
+            edit: {
+                featureGroup: drawnItems
+            }
+        });
 L.control.layers(baseLayers).addTo(map);
      // L.control.zoom({ position: "bottomright"}).addTo(map);
      // map.locate({setView: true, maxZoom: 16});
@@ -42,7 +54,14 @@ L.control.layers(baseLayers).addTo(map);
   //  L.control.scale({ position: "topright"}).addTo(map);
    // L.control.fullscreen().addTo(map);
      //   map.on('click', this.onMapClick);
-        
+         map.addControl(drawControl);
+         
+         
+         map.on('draw:created', function (e) {
+            var type = e.layerType,
+                layer = e.layer;
+            drawnItems.addLayer(layer);
+        });
         map.invalidateSize();
         map.fitWorld();
                
