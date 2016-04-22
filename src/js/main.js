@@ -14,6 +14,7 @@ import About from './containers/About/About';
 import Code from './containers/Code/Code';
 import Mrkdown from './containers/Mrkdown/Mrkdown';
 import LMap from './containers/Map/Map.js';
+import Navbar from './containers/navbar/navbar';
 
 const GoldenLayout = require('imports?React=react&ReactDOM=react-dom!golden-layout');
 
@@ -83,7 +84,7 @@ myLayout.registerComponent( 'Mrkdown', MrkdownComp );
 myLayout.registerComponent( 'LMap', MapComp );
 
 //Once all components are registered, call
-myLayout.init();
+//myLayout.init();
 
 // Render the React application to the DOM
 //   <div className='mainContainer'>  <MenuBar/> </div> 
@@ -91,7 +92,7 @@ ReactDOM.render(
   <Provider store={store}>
 
 
-    <myLayout/>
+    <Navbar/>
 
   </Provider>,
   rootElement
