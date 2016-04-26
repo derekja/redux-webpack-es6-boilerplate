@@ -93,7 +93,7 @@ ReactDOM.render(
 
   <div>
     <myLayout/>
-    <Navbar/>
+    <Header/>
    </div>
 
   </Provider>,
