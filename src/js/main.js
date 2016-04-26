@@ -14,7 +14,7 @@ import About from './containers/About/About';
 import Code from './containers/Code/Code';
 import Mrkdown from './containers/Mrkdown/Mrkdown';
 import LMap from './containers/Map/Map.js';
-import Navbar from './containers/navbar/navbar';
+import Header from './containers/Header/Header';
 
 const GoldenLayout = require('imports?React=react&ReactDOM=react-dom!golden-layout');
 
