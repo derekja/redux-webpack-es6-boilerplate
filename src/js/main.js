@@ -9,12 +9,11 @@ import configureStore  from './store/configureStore';
 import { Router, browserHistory, hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 
-import MenuBar from './components/menubar';
-import About from './containers/AboutApp/AboutApp';
-import Mrkdown from './containers/MrkdownApp/MrkdownApp';
-import LMap from './containers/Map/Map.js';
 
-import routes from './routes';
+import About from './containers/About/About';
+import Code from './containers/Code/Code';
+import Mrkdown from './containers/Mrkdown/Mrkdown';
+import LMap from './containers/Map/Map.js';
 
 const GoldenLayout = require('imports?React=react&ReactDOM=react-dom!golden-layout');
 
@@ -22,31 +21,11 @@ const GoldenLayout = require('imports?React=react&ReactDOM=react-dom!golden-layo
 const store = configureStore();
 const rootElement = document.getElementById('app');
 
-let ComponentEl;
 
-if (process.env.NODE_ENV !== 'production') {
-  const DevTools = require('./containers/DevTools').default;
-
-  // If using routes
-  ComponentEl = (
-    <div>
-      {routes}
-      <DevTools />
-    </div>
-  );
-} else {
-  ComponentEl = (
-    <div>
-      <Router history={browserHistory} routes={routes} />
-    </div>
-  );
-}
-
-class testComponent extends Component {
-    render() {
-        
-        return (<h3><i>{this.state.label}foo</i></h3>)
-    }
+var CodeComp = function(container) {
+  var code = container.getElement()[ 0 ];
+  ReactDOM.render(<Code/>, code);
+  
 }
 
 var AboutComp = function(container) {
@@ -60,6 +39,10 @@ var MrkdownComp = function(container) {
   ReactDOM.render(<Mrkdown/>, mrk);
 }
 
+var MapComp = function(container) {
+    var map = container.getElement()[ 0 ];
+  ReactDOM.render(<LMap/>, map);  
+}
 
 var MapComp = function(container) {
   var m = container.getElement()[ 0 ];
@@ -67,7 +50,7 @@ var MapComp = function(container) {
 }
 var myLayout = new GoldenLayout({
     settings: {
-      showPopoutIcon: false
+      showPopoutIcon: true
     },
     content: [{
         type: 'row',
@@ -88,12 +71,17 @@ var myLayout = new GoldenLayout({
                 componentName: 'LMap',
                 title: 'item C',
                 props: { label: 'C' }
+            },{
+                type:'component',
+                componentName: 'Code',
+                title: 'item D',
+                props: { label: 'D' }
             }]
         }]
     }]
 });
 
-myLayout.registerComponent( 'TestComponent', testComponent );
+myLayout.registerComponent( 'Code', CodeComp );
 myLayout.registerComponent( 'About', AboutComp );
 myLayout.registerComponent( 'Mrkdown', MrkdownComp );
 myLayout.registerComponent( 'LMap', MapComp );

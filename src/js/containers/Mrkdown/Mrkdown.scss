@@ -1,18 +1,12 @@
-body {
-  background-color: #F4F3F0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
 
-.DocsApp {
-  width: 300px;
+.Mrkdown {
+  background-color: #84BA72;
+  width: 100%;
   padding-top: 18px;
-  background-color: #5C75B0;
   border: 1px solid #E3E3E3;
 }
 
-.DocsApp h1 {
+#Mrkdown h1 {
   color: white;
   font-size: 16px;
   line-height: 20px;
