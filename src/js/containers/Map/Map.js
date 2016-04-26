@@ -58,7 +58,7 @@ L.control.layers(baseLayers).addTo(map);
                 layer = e.layer;
             drawnItems.addLayer(layer);
         });
-         setTimeout(() => map.invalidateSize());
+        setTimeout(() => map.invalidateSize(),500);
         map.fitWorld();
    
         map.setView([-34.25111532338494, -59.012203216552734],14, {
