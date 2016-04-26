@@ -46,7 +46,7 @@ var MapComp = function(container) {
 
 var myLayout = new GoldenLayout({
     settings: {
-      showPopoutIcon: false
+      showPopoutIcon: true
     },
     content: [{
         type: 'row',

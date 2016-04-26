@@ -1,6 +1,7 @@
 import './Code.scss';
 import React, {Component} from 'react';
 import Codemirror from 'react-codemirror';
+import {Button} from 'react-bootstrap';
 
 import 'codemirror/mode/python/python';
 import 'codemirror/lib/codemirror.css';
@@ -28,12 +29,21 @@ class Code extends Component {
       this.refs.editor.codeMirror.refresh();
       
   }
+  
+  btnClick = () => {
+      
+      console.log("btnClick");
+  }
+  
   render() {
       var options = {
           lineNumbers: true
       };
     return (
-      <Codemirror ref="editor" value={this.state.code} onChange={this.updateCode} options={options} />
+      <div>
+          <Codemirror ref="editor" value={this.state.code} onChange={this.updateCode} options={options} />
+          <Button bsSize="large" onClick={this.btnClick}>Large button</Button>
+      </div>
     )
   }
 }

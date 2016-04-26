@@ -11,6 +11,8 @@ var LeafletMap = React.createClass({
     
     componentDidMount: function() {
         
+    window.addEventListener('resize', this.handleResize);
+        
    // var  mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
         
     var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',thunLink = '<a href="http://thunderforest.com/">Thunderforest</a>';
@@ -62,13 +64,20 @@ L.control.layers(baseLayers).addTo(map);
                 layer = e.layer;
             drawnItems.addLayer(layer);
         });
-        map.invalidateSize();
+        setTimeout(() => map.invalidateSize(), 100);
         map.fitWorld();
                
     },
+    handleResize: function(e) {
+        //this.setState({windowWidth: window.innerWidth});
+        //setTimeout(() => map.invalidateSize());
+        console.log("resize");
+    },
+  
     componentWillUnmount: function() {
         this.map.off('click', this.onMapClick);
         this.map = null;
+        window.removeEventListener('resize', this.handleResize);
     },
     onMapClick: function() {
         // Do some wonderful map things...
