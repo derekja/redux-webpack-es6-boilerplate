@@ -9,9 +9,10 @@ import './Map.scss';
 
 // here's the actual component
 var LeafletMap = React.createClass({
-    
-    componentDidMount: function() { 
-        
+
+ 
+ componentDidMount: function() { 
+       
 var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',thunLink = '<a href="http://thunderforest.com/">Thunderforest</a>';
 
 var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',osmAttrib = '&copy; ' + osmLink + ' Contributors',landUrl = 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',thunAttrib = '&copy; '+osmLink+' Contributors & '+thunLink;
@@ -22,14 +23,14 @@ var osmMap = L.tileLayer(osmUrl, {attribution: osmAttrib}), landMap = L.tileLaye
           fullscreenControl: true,
             minZoom: 9,
             maxZoom: 20,
+            trackResize: true,
             layers: [   
           osmMap
-
             ],
             attributionControl: false,
             zoomControl: true,
         });
-
+   console.log(map.options.trackResize);
   map.zoomControl.setPosition('topright');
       var baseLayers = {
 	"OSM Mapnik": osmMap,
@@ -48,35 +49,40 @@ L.control.layers(baseLayers).addTo(map);
      // map.locate({setView: true, maxZoom: 16});
       map.zoomControl.setPosition('topright');
   //  L.control.scale({ position: "topright"}).addTo(map);
-   // L.control.fullscreen().addTo(map);
-
-         map.addControl(drawControl);
-         
-         
-      map.on('draw:created', function (e) {
+      map.addControl(drawControl);
+  map.on('draw:created', function (e) {
             var type = e.layerType,
                 layer = e.layer;
             drawnItems.addLayer(layer);
         });
-        setTimeout(() => map.invalidateSize(),500);
-        map.fitWorld();
-   
-        map.setView([-34.25111532338494, -59.012203216552734],14, {
+    map.setView([-34.25111532338494, -59.012203216552734],14, {
     reset: false
   });
-      
+        
+        setTimeout(() => map.invalidateSize(),500);
+        map.fitWorld();
+       
+      map.on('resize', function () {
+        
+        setTimeout(() => osmMap.redraw(),500);
+});
      // var marker = L.marker([51.5, -0.09]).addTo(map);
+    setTimeout(() => map.invalidateSize(),500);
+        map.fitWorld();
     },
+     
+    
   
     componentWillUnmount: function() {
         this.map.off('click', this.onMapClick);
-        this.map = null;
+       // this.map = null;
+        
 
     },
     onMapClick: function(e) {
         //alert("You clicked the map at " + e.latlng);
 
-         map.invalidateSize();
+         //setTimeout(() => map.invalidateSize(),500);
     },
     
    /*
@@ -96,9 +102,7 @@ L.control.layers(baseLayers).addTo(map);
         );
     }
 });
-  
-  
- 
+
   // export our Map component so that webpack can include it with other components that require it
 module.exports = LeafletMap;
 

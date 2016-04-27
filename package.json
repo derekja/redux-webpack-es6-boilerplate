@@ -65,6 +65,7 @@
     "classnames": "2.2.3",
     "codemirror": "5.13.4",
     "golden-layout": "1.5.1",
+    "javascript-detect-element-resize": "0.5.3",
     "jquery": "2.2.3",
     "json-loader": "0.5.4",
     "katex": "0.5.1",

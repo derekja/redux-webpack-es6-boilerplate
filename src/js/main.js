@@ -41,13 +41,15 @@ var MrkdownComp = function(container) {
 
 var MapComp = function(container) {
     var map = container.getElement()[ 0 ];
+    
   ReactDOM.render(<LMap/>, map);  
 }
-
+/*
 var MapComp = function(container) {
   var m = container.getElement()[ 0 ];
   ReactDOM.render(<LMap/>, m);
 }
+*/
 var myLayout = new GoldenLayout({
     settings: {
       showPopoutIcon: true
