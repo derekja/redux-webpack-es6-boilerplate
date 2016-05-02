@@ -1,5 +1,6 @@
 import './About.scss';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 
 class About extends Component {
@@ -9,10 +10,18 @@ class About extends Component {
       <div className="About">
         <h2>About</h2>
         <p>Non-information goes here.</p>
+        <p>{this.props.txt}</p>
       </div>
     )
   }
 }
 
-export default About;
+function mapStateToProps(state) {
+  
+  return {
+    txt: state.app_reducer.txt
+  };
+}
+
+export default connect(mapStateToProps)(About);
 
