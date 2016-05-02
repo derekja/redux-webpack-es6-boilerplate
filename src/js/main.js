@@ -91,10 +91,10 @@ myLayout.init();
 ReactDOM.render(
   <Provider store={store}>
 
-  <div>
-    <myLayout/>
-    <Header/>
-   </div>
+    <div className="lm_goldenlayout">
+        <Header/>
+        <myLayout/>
+    </div>
 
   </Provider>,
   rootElement
