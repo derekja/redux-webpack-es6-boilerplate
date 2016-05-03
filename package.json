@@ -83,6 +83,7 @@
     "react-codemirror": "0.2.6",
     "react-dom": "0.14.7",
     "react-leaflet": "0.10.2",
+    "react-menu-list": "2.0.0",
     "react-redux": "4.4.0",
     "react-router": "2.0.0",
     "redux": "3.3.1"

@@ -1,17 +1,22 @@
 .lm_header_menu {
   margin-left: auto;
   right: 0;
-  clear: right; 
+  clear: left; 
+  position: relative;
+  z-index: 1000000 !important; // this is getting out of control  
 }
 
  .lm_header_menu > ul {
     float: right;
     position: absolute;
-    z-index: 1000000; // this is getting out of control
     right: 0;
     margin: 0;
     padding: 0;
     width: 170px;
+   
+  }
+  .lm_header_menu > Dropdown {
+    position: absolute;
   }
 
 .lm_header_menu > li{
