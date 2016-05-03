@@ -34,6 +34,7 @@ class Code extends Component {
       this.refs.editor.codeMirror.refresh();
       
       const { gl } = this.props;
+      const { glhub } = this.props;
       const { store } = this.context;
       
   }
@@ -43,9 +44,11 @@ class Code extends Component {
   
   btnClick = () => {
       const { store } = this.context;
+      const { glhub } = this.props;
       let txt = this.state.txt;
       console.log("btnClick "+txt);
-      store.dispatch({type: 'Run_Tile', txt});
+      glhub.emit('Run_Tile', txt);
+      
   }
   
    render() {

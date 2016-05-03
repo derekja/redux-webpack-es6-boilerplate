@@ -15,7 +15,6 @@ const rootElement = document.getElementById('app');
 
 const store = configureStore();
 
-
 // Render the React application to the DOM
 ReactDOM.render(
   <Provider store={store}>

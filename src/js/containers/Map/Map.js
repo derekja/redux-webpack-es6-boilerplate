@@ -87,12 +87,6 @@ var LeafletMap = React.createClass({
         // Do some wonderful map things...
          map.invalidateSize();
     },
-//      btnClick = () => {
-      //const { store } = this.context;
-//      let txt = this.state.txt;
-//      console.log("btnClick_map "+txt);
-      //store.dispatch({type: 'Run_Tile'});
-//  },
     
    /*
      zoomToFeature: function(target) {

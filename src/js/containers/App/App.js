@@ -12,7 +12,6 @@ import LMap from '../Map/Map.js';
 import configureStore  from '../../store/configureStore';
 import GoldenLayout from 'imports?React=react&ReactDOM=react-dom!golden-layout';
 
-//const store = configureStore();
 
 
 class App extends Component {
@@ -24,7 +23,20 @@ class App extends Component {
 
 
   }
-
+  
+  wrapComponent (Component: Component, store) {
+  class Wrapped extends React.Component {
+    render () {
+      return (
+        <Provider store={store}>
+          <Component {...this.props} />
+        </Provider>
+      )
+    }
+  }
+  return Wrapped
+}
+  
   componentDidMount() {
 
 const { store } = this.context;
@@ -32,13 +44,16 @@ const { store } = this.context;
 
 var CodeComp = function(container) {
   var code = container.getElement()[ 0 ];
-  ReactDOM.render(<Provider store={store}><Code gl={myLayout} /></Provider>, code);
+  ReactDOM.render(<Provider store={store}><Code gl={myLayout} glhub={myLayout.eventHub}/></Provider>, code);
   
 }
 
+
+//const CodeView = connect(CodeComp.MapStateToProps)(CodeComp.component);
+
 var AboutComp = function(container) {
   var abt = container.getElement()[ 0 ];
-  ReactDOM.render(<Provider store={store}><About gl={myLayout} /></Provider>, abt);
+  ReactDOM.render(<About gl={myLayout} />, abt);
   
 }
 
