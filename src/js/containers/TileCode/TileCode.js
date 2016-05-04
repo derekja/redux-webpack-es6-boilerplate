@@ -1,4 +1,4 @@
-import './Code.scss';
+import './TileCode.scss';
 import React, {Component} from 'react';
 import Codemirror from 'react-codemirror';
 import {Button} from 'react-bootstrap';
@@ -8,7 +8,7 @@ import 'codemirror/mode/python/python';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/monokai.css';
 
-class Code extends Component {
+class TileCode extends Component {
 
   constructor(props) {
       super(props);
@@ -63,5 +63,5 @@ class Code extends Component {
 
 
   
-export default Code;
+export default TileCode;
 

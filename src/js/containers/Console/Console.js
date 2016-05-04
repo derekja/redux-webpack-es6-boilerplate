@@ -1,9 +1,9 @@
-import './About.scss';
+import './Console.scss';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 
-class About extends Component {
+
+class Console extends Component {
 
 constructor(props) {
       super(props);
@@ -26,14 +26,14 @@ runtile = (arg) => {
 
   render() {
     return (
-      <div className="About">
-        <h2>About</h2>
-        <p>Non-information goes here.</p>
+      <div className="Console">
+        <h2>Console Output</h2>
+        <p>Output from the scripts that would normally be sent to the console appears here</p>
         <p>{this.state.txt}</p>
       </div>
     );
   }
 }
 
-export default About;
+export default Console;
 

@@ -1,11 +1,10 @@
-'use strict';
-
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 
-import About from '../About/About';
-import Code from '../Code/Code';
-import Mrkdown from '../Mrkdown/Mrkdown';
+import Console from '../Console/Console';
+import TileCode from '../TileCode/TileCode';
+import CollectorCode from '../CollectorCode/CollectorCode';
+import Docs from '../Docs/Docs';
 import LMap from '../Map/Map.js';
 
 import GoldenLayout from 'imports?React=react&ReactDOM=react-dom!golden-layout';
@@ -24,22 +23,28 @@ class Appl extends Component {
 
 
 
-var CodeComp = function(container) {
-  var code = container.getElement()[ 0 ];
-  ReactDOM.render(<Code gl={myLayout} glhub={myLayout.eventHub}/>, code);
+var TileCodeComp = function(container) {
+  var tilecode = container.getElement()[ 0 ];
+  ReactDOM.render(<TileCode gl={myLayout} glhub={myLayout.eventHub}/>, tilecode);
+  
+};
+
+var CollectorCodeComp = function(container) {
+  var collectorcode = container.getElement()[ 0 ];
+  ReactDOM.render(<CollectorCode gl={myLayout} glhub={myLayout.eventHub}/>, collectorcode);
   
 };
 
 
-var AboutComp = function(container) {
-  var abt = container.getElement()[ 0 ];
-  ReactDOM.render(<About gl={myLayout} />, abt);
+var ConsoleComp = function(container) {
+  var Cons = container.getElement()[ 0 ];
+  ReactDOM.render(<Console gl={myLayout} />, Cons);
   
 };
 
-var MrkdownComp = function(container) {
+var DocsComp = function(container) {
   var mrk = container.getElement()[ 0 ];
-  ReactDOM.render(<Mrkdown/>, mrk);
+  ReactDOM.render(<Docs/>, mrk);
 };
 
 var MapComp = function(container) {
@@ -55,34 +60,40 @@ var myLayout = new GoldenLayout({
         type: 'row',
         content:[{
             type:'component',
-            componentName: 'About',
-            title: 'item A',
-            ComponentState: { label: 'A' }
+            componentName: 'Console',
+            title: 'Console output',
+            ComponentState: { label: 'Console' }
         },{
             type: 'column',
             content:[{
                 type:'component',
-                componentName: 'Mrkdown',
-                title: 'item b',
-                props: { label: 'B' }
+                componentName: 'Docs',
+                title: 'Documentation',
+                props: { label: 'Docs' }
             },{
                 type:'component',
                 componentName: 'LMap',
-                title: 'item C',
-                props: { label: 'C' }
+                title: 'Map',
+                props: { label: 'Map' }
             },{
                 type:'component',
-                componentName: 'Code',
-                title: 'item D',
-                props: { label: 'D' }
+                componentName: 'TileCode',
+                title: 'Tile Code',
+                props: { label: 'Tile' }
+            },{
+                type:'component',
+                componentName: 'CollectorCode',
+                title: 'Collector Code',
+                props: { label: 'Collector' }
             }]
         }]
     }]
 });
 
-myLayout.registerComponent( 'Code', CodeComp );
-myLayout.registerComponent( 'About', AboutComp );
-myLayout.registerComponent( 'Mrkdown', MrkdownComp );
+myLayout.registerComponent( 'TileCode', TileCodeComp );
+myLayout.registerComponent( 'CollectorCode', CollectorCodeComp );
+myLayout.registerComponent( 'Console', ConsoleComp );
+myLayout.registerComponent( 'Docs', DocsComp );
 myLayout.registerComponent( 'LMap', MapComp );
 
 

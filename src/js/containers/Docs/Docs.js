@@ -1,7 +1,5 @@
-import './Mrkdown.scss';
-import { Router, Route, IndexRoute, Link, IndexLink, browserHistory } from 'react-router';
+import './Docs.scss';
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 import MarkdownIt from 'markdown-it';
 import mk from 'markdown-it-katex';
 
@@ -20,19 +18,19 @@ var foo = md.render(wikitxt);
  
 
 
-class Mrkdown extends Component {
+class Docs extends Component {
 
 
   render() {
     return (
       <div>
         <h2>Markdown</h2>
-        <div className="Mrkdown" dangerouslySetInnerHTML={{__html: foo}}>
+        <div className="Docs" dangerouslySetInnerHTML={{__html: foo}}>
         </div>
       </div>
     )
   }
 }
 
-export default Mrkdown;
+export default Docs;
 
