@@ -13,7 +13,7 @@ constructor(props) {
   componentDidMount = () => {
       const { gl } = this.props;
 
-      gl.eventHub.on('Run_Tile', this.runtile)
+      gl.eventHub.on('Run_Tile', this.runtile);
       
   }
 
@@ -31,7 +31,7 @@ runtile = (arg) => {
         <p>Non-information goes here.</p>
         <p>{this.state.txt}</p>
       </div>
-    )
+    );
   }
 }
 

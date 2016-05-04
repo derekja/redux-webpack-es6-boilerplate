@@ -1,7 +1,5 @@
 import './Code.scss';
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import Codemirror from 'react-codemirror';
 import {Button} from 'react-bootstrap';
 import {RunTile} from '../../actions/Actions';
@@ -21,12 +19,6 @@ class Code extends Component {
         txt: ''};
   }
   
-  updateCode = (newCode) => {
-      this.setState({
-          code: newCode
-      });
-  }
-  
   componentDidMount = () => {
       
       //console.log(this.refs);
@@ -35,15 +27,19 @@ class Code extends Component {
       
       const { gl } = this.props;
       const { glhub } = this.props;
-      const { store } = this.context;
       
   }
+  updateCode = (newCode) => {
+      this.setState({
+          code: newCode
+      });
+  }
+  
   onTxtChange = (event) => {
-      this.setState({txt: event.target.value})
+      this.setState({txt: event.target.value});
   }
   
   btnClick = () => {
-      const { store } = this.context;
       const { glhub } = this.props;
       let txt = this.state.txt;
       console.log("btnClick "+txt);
@@ -61,25 +57,11 @@ class Code extends Component {
           <input type="text"  name="btnText" onChange={this.onTxtChange} value={this.state.txt}/>
           <Button bsSize="large" onClick={this.btnClick}>send text</Button>
       </div>
-    )
+    );
   }
 }
 
- const mapStateToProps = (state) => {
-      // whatever is returned will show up as props
-      return {
-        code: state.code  
-      };
-      
-  }
+
   
-  const mapDispatchToProps = (dispatch) => {
-      return bindActionCreators({type: RunTile}, dispatch);
-  }
-  
-  Code.contextTypes = {
-    store: React.PropTypes.object
-};
-  
-export default connect(mapStateToProps, mapDispatchToProps)(Code);
+export default Code;
 

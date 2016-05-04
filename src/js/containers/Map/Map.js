@@ -8,9 +8,9 @@ import {Button} from 'react-bootstrap';
 
 import './Map.scss';
 // here's the actual component
-var LeafletMap = React.createClass({
+class LeafletMap extends React.Component{
     
-    componentDidMount: function() {
+    componentDidMount() {
     
             const { glcontainer } = this.props;
                     
@@ -33,7 +33,7 @@ var LeafletMap = React.createClass({
                    layers: [
                    osmMap
                    ],
-                   attributionControl: false,
+                   attributionControl: false
             });
 
                 //  var marker = L.marker([-41.29042, 174.78219]).addTo(map);
@@ -70,23 +70,25 @@ var LeafletMap = React.createClass({
                     setTimeout(() => map.invalidateSize(), 100);
                     map.fitWorld();
                         
-    },
-    handleResize: function(e) {
-        //this.setState({windowWidth: window.innerWidth});
-        //setTimeout(() => map.invalidateSize());
-        console.log("resize");
-    },
+    }
+
   
-    componentWillUnmount: function() {
+    componentWillUnmount() {
+        const { glcontainer } = this.props;
         this.map.off('click', this.onMapClick);
         this.map = null;
         window.removeEventListener('resize', this.handleResize);
         glcontainer.off('resize', this.handleResize);
-    },
-    onMapClick: function() {
+    }
+    handleResize = (e) => {
+        //this.setState({windowWidth: window.innerWidth});
+        setTimeout(() => this.map.invalidateSize());
+        console.log("resize");
+    }
+    onMapClick = () => {
         // Do some wonderful map things...
-         map.invalidateSize();
-    },
+         this.map.invalidateSize();
+    }
     
    /*
      zoomToFeature: function(target) {
@@ -99,7 +101,7 @@ var LeafletMap = React.createClass({
   },
   */
    
-    render: function() {
+    render() {
         return (
               <div className='map'>
             
@@ -108,7 +110,7 @@ var LeafletMap = React.createClass({
 
         );
     }
-});
+}
   
   
  

@@ -1,5 +1,5 @@
 import './Mrkdown.scss';
-import { Router, Route, IndexRoute, Link, IndexLink, browserHistory } from 'react-router'
+import { Router, Route, IndexRoute, Link, IndexLink, browserHistory } from 'react-router';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import MarkdownIt from 'markdown-it';

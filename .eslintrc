@@ -8,7 +8,7 @@
   ],
 
   "globals": {
-    define: true
+    "define": true
   },
 
   "env": {

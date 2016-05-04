@@ -1,7 +1,6 @@
 'use strict';
 
 import React, {Component, PropTypes} from 'react';
-import { connect, Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 
 import About from '../About/About';
@@ -9,63 +8,44 @@ import Code from '../Code/Code';
 import Mrkdown from '../Mrkdown/Mrkdown';
 import LMap from '../Map/Map.js';
 
-import configureStore  from '../../store/configureStore';
 import GoldenLayout from 'imports?React=react&ReactDOM=react-dom!golden-layout';
 
 
 
-class App extends Component {
+class Appl extends Component {
  
 
  constructor(props) {
-    super(props)
+    super(props);
     
-
-
   }
-  
-  wrapComponent (Component: Component, store) {
-  class Wrapped extends React.Component {
-    render () {
-      return (
-        <Provider store={store}>
-          <Component {...this.props} />
-        </Provider>
-      )
-    }
-  }
-  return Wrapped
-}
   
   componentDidMount() {
 
-const { store } = this.context;
 
 
 var CodeComp = function(container) {
   var code = container.getElement()[ 0 ];
-  ReactDOM.render(<Provider store={store}><Code gl={myLayout} glhub={myLayout.eventHub}/></Provider>, code);
+  ReactDOM.render(<Code gl={myLayout} glhub={myLayout.eventHub}/>, code);
   
-}
+};
 
-
-//const CodeView = connect(CodeComp.MapStateToProps)(CodeComp.component);
 
 var AboutComp = function(container) {
   var abt = container.getElement()[ 0 ];
   ReactDOM.render(<About gl={myLayout} />, abt);
   
-}
+};
 
 var MrkdownComp = function(container) {
   var mrk = container.getElement()[ 0 ];
   ReactDOM.render(<Mrkdown/>, mrk);
-}
+};
 
 var MapComp = function(container) {
     var map = container.getElement()[ 0 ];
   ReactDOM.render(<LMap gl={myLayout} glcontainer={container} />, map);  
-}
+};
 
 var myLayout = new GoldenLayout({
     settings: {
@@ -116,15 +96,15 @@ myLayout.init();
   }
 
   render () {
-      return( <myLayout/>)
+      return( <myLayout/>);
       
   }  
     
 }
 
-App.contextTypes = {
+Appl.contextTypes = {
     store: React.PropTypes.object
 };
 
 
-export default App;
+export default Appl;
