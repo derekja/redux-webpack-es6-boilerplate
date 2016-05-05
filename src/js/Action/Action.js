@@ -19,14 +19,24 @@ function RunTile() {
 function NewWindow(window) {
     switch(window) {
         case types.DocsWindow:
-        console.log("docswindow");
-        var newItemConfig = {
-            title: "Docs",
-            type: 'component',
-            componentName: 'Docs'
-         };
-         this.root.contentItems[ 0 ].addChild( newItemConfig );
-  
+            console.log("docswindow");
+            var newItemConfig = {
+                title: "Docs",
+                type: 'component',
+                componentName: 'Docs'
+            };
+            this.root.contentItems[ 0 ].addChild( newItemConfig );
+            break;
+        case types.TileWindow:
+            console.log("tilewindow");
+            var newItemConfig = {
+                title: "Tile",
+                type: 'component',
+                componentName: 'TileCode'
+            };
+            this.root.contentItems[ 0 ].addChild( newItemConfig );
+            break;
+            
     }
     
     
