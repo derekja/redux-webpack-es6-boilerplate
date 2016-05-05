@@ -21,6 +21,8 @@ class Appl extends Component {
  constructor(props) {
     super(props);
     
+    this.state = {gl: ''};
+    
   }
   
   componentDidMount() {
@@ -118,13 +120,16 @@ myLayout.init();
 
 Action(myLayout);
 
+this.setState({gl: myLayout});
+
+//Header.addGL(myLayout);
 
   }
 
   render () {
       return( 
         <div className="lm_goldenlayout">
-            <Header />
+            <Header gl={this.state.gl}/>
             <myLayout/>
         </div>
       );

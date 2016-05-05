@@ -28,7 +28,7 @@ class Docs extends Component {
         <div className="Docs" dangerouslySetInnerHTML={{__html: foo}}>
         </div>
       </div>
-    )
+    );
   }
 }
 

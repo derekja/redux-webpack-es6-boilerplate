@@ -20,7 +20,7 @@ function NewWindow(window) {
     switch(window) {
         case types.DocsWindow:
             console.log("docswindow");
-            var newItemConfig = {
+            let newItemConfig = {
                 title: "Docs",
                 type: 'component',
                 componentName: 'Docs'
@@ -29,12 +29,12 @@ function NewWindow(window) {
             break;
         case types.TileWindow:
             console.log("tilewindow");
-            var newItemConfig = {
+            let newItemConfig1 = {
                 title: "Tile",
                 type: 'component',
                 componentName: 'TileCode'
             };
-            this.root.contentItems[ 0 ].addChild( newItemConfig );
+            this.root.contentItems[ 0 ].addChild( newItemConfig1 );
             break;
             
     }
