@@ -4,9 +4,6 @@ import './Header.scss';
 
 var _ = require('lodash');
 
-var actions = require('../../actions/Actions');
-
-
 function LI(props) {
   return (
     <div className="MenuItem">
@@ -32,10 +29,12 @@ class Header extends Component {
               menu={
              <div className='MenuList'>
                   <MenuList>
-                      <LI>About</LI>
-                      <LI>Code</LI>
+                      <LI>Console</LI>
+                      <LI>Tile Code</LI>
+                      <LI>Collector</LI>
                       <LI>Map</LI>
-                      <LI>Markdown</LI>
+                      <LI>Docs</LI>
+                      <LI>Controls</LI>
                   </MenuList>
                 </div>
               }

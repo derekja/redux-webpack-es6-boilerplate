@@ -1,6 +1,8 @@
 'use strict';
 import '../styles/bootstrap.min.css';
 import '../styles/styles.scss';
+import '../styles/goldenlayout-dark-theme.css';
+import '../styles/goldenlayout-base.css';
 
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';

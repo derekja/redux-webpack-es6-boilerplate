@@ -1,11 +1,15 @@
 /* STYLES THE MENU HEADER */
 .lm_header_menu {
+  display: block;
   background: #262626;
   height: 30px;
+  width: 100%;
+  position:fixed; 
+  top:0px;
   margin-left: auto;
   clear: left; 
-  position: relative;
   border-bottom:  2px solid #404040;
+  z-index: 100000000 !important;
 }
 
 /* STYLES THE MENU BUTTON */
@@ -32,7 +36,7 @@
 
 /* STYLES THE MENULIST THAT POPS UP WHEN MENU BUTTON IS CLICKED */
 .MenuList {
-  background: #595959;
+  background-color: rgba(0, 0, 0, .8);
   color: #fff;
   margin-left: 2px;
   border: 3px;
@@ -43,7 +47,7 @@
 /* STYLES THE INDIVIDUAL ITEMS ON THE MENU */
 .MenuItem {
   font-family: Helvetica;
-  border: 3px;
+  padding: 5px;
   text-decoration: none;
   display: block;
   text-align: left;  

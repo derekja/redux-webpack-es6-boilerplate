@@ -7,6 +7,8 @@ import CollectorCode from '../CollectorCode/CollectorCode';
 import Docs from '../Docs/Docs';
 import LMap from '../Map/Map.js';
 import Runbtn from '../Runbtn/Runbtn';
+import Header from '../Header/Header';
+
 
 import GoldenLayout from 'imports?React=react&ReactDOM=react-dom!golden-layout';
 
@@ -120,10 +122,13 @@ Action(myLayout);
   }
 
   render () {
-      return( <myLayout/>);
-      
-  }  
-    
+      return( 
+        <div className="lm_goldenlayout">
+            <Header />
+            <myLayout/>
+        </div>
+      );
+  }   
 }
 
 Appl.contextTypes = {
