@@ -25,6 +25,12 @@ class Runbtn extends Component {
       gl.eventHub.emit(types.Run_Scripts);
       
   }
+   runWindow = () => {
+      const { gl } = this.props;
+      console.log("runWindow");
+      gl.eventHub.emit(types.New_Window, types.DocsWindow);
+      
+  }
     viewClick = () => {
       const { gl } = this.props;
       console.log("viewClick");
@@ -40,6 +46,7 @@ class Runbtn extends Component {
       <div className="Runbtn">
           <Button bsSize="large" onClick={this.runClick}>Run Algorithms</Button>
           <Button name="viewBtn" bsSize="large" onClick={this.viewClick} disabled={this.state.viewBtnDisabled}>View Results</Button>
+          <Button bsSize="large" onClick={this.runWindow}>tmp open window</Button>
       </div>
     );
   }

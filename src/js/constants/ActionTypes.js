@@ -13,6 +13,15 @@ export const Run_Scripts = 'Run_Scripts';
 export const View_Results = 'View_Results';
 export const Results_Ready = 'Results_Ready';
 
+export const TileWindow = "TileWindow";
+export const DocsWindow = "DocsWindow";
+export const CollectorWindow = "CollectorWindow";
+export const RunbtnWindow = "RunbtnWindow";
+export const ConsoleWindow = "ConsoleWindow";
+export const MapsWindow = "MapsWindow";
+export const ScriptsWindow = "ScriptsWindow";
+export const AOIWindow = "AOIWindow";
+
 
 
 
