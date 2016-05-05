@@ -18,25 +18,86 @@ function RunTile() {
 
 function NewWindow(window) {
     switch(window) {
-        case types.DocsWindow:
-            console.log("docswindow");
-            let newItemConfig = {
-                title: "Docs",
-                type: 'component',
-                componentName: 'Docs'
-            };
-            this.root.contentItems[ 0 ].addChild( newItemConfig );
-            break;
+
         case types.TileWindow:
             console.log("tilewindow");
-            let newItemConfig1 = {
+            let newItemConfig0 = {
                 title: "Tile",
                 type: 'component',
                 componentName: 'TileCode'
             };
+            this.root.contentItems[ 0 ].addChild( newItemConfig0 );
+            break;
+
+        case types.DocsWindow:
+            console.log("docswindow");
+            let newItemConfig1 = {
+                title: "Docs",
+                type: 'component',
+                componentName: 'Docs'
+            };
             this.root.contentItems[ 0 ].addChild( newItemConfig1 );
             break;
             
+        case types.CollectorWindow:
+            console.log("collectorwindow");
+            let newItemConfig2 = {
+                title: "Collector",
+                type: 'component',
+                componentName: 'CollectorCode'
+            };
+            this.root.contentItems[ 0 ].addChild( newItemConfig2 );
+            break;  
+                      
+        case types.RunbtnWindow:
+            console.log("runbtnwindow");
+            let newItemConfig3 = {
+                title: "Controls",
+                type: 'component',
+                componentName: 'Runbtn'
+            };
+            this.root.contentItems[ 0 ].addChild( newItemConfig3 );
+            break;   
+                                  
+        case types.ConsoleWindow:
+            console.log("consolewindow");
+            let newItemConfig4 = {
+                title: "Console",
+                type: 'component',
+                componentName: 'Console'
+            };
+            this.root.contentItems[ 0 ].addChild( newItemConfig4 );
+            break;   
+            
+        case types.MapsWindow:
+            console.log("mapswindow");
+            let newItemConfig5 = {
+                title: "Map",
+                type: 'component',
+                componentName: 'LMap'
+            };
+            this.root.contentItems[ 0 ].addChild( newItemConfig5 );
+            break;      
+
+        case types.ScriptsWindow:
+            console.log("scriptswindow");
+            let newItemConfig6 = {
+                title: "Scripts",
+                type: 'component',
+                componentName: 'Docs'
+            };
+            this.root.contentItems[ 0 ].addChild( newItemConfig6 );
+            break;   
+                                    
+        case types.AOIWindow:
+            console.log("aoiwindow");
+            let newItemConfig7 = {
+                title: "AOI",
+                type: 'component',
+                componentName: 'Docs'
+            };
+            this.root.contentItems[ 0 ].addChild( newItemConfig7 );
+            break;      
     }
     
     
