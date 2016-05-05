@@ -1,9 +1,52 @@
+/* STYLES THE MENU HEADER */
 .lm_header_menu {
+  background: #262626;
+  height: 30px;
   margin-left: auto;
-  right: 0;
   clear: left; 
   position: relative;
-  z-index: 1000000 !important; // this is getting out of control  
+  border-bottom:  2px solid #404040;
+}
+
+/* STYLES THE MENU BUTTON */
+.lm_header_menu > button {
+  background: #212121;
+  min-width: 100px;
+  height: 30px;
+  margin-left: auto;
+  right: 0;
+  color: #fff;
+  font-family: Helvetica;
+  border: 2px solid #404040;
+  position: absolute;
+  /* Following two determine how slowly the color transitions to the hover state */
+  -webkit-transition-duration: 0.4s; /* for Safari */
+  transition-duration: 0.4s;  
+}
+
+.lm_header_menu > button:hover {
+  background: #8A8A8A;
+  color: #FFF;
+  border: 2px solid #404040;
+} 
+
+/* STYLES THE MENULIST THAT POPS UP WHEN MENU BUTTON IS CLICKED */
+.MenuList {
+  background: #595959;
+  color: #fff;
+  margin-left: 2px;
+  border: 3px;
+  min-width: 100px;
+  cursor: pointer;
+}
+
+/* STYLES THE INDIVIDUAL ITEMS ON THE MENU */
+.MenuItem {
+  font-family: Helvetica;
+  border: 3px;
+  text-decoration: none;
+  display: block;
+  text-align: left;  
 }
 
  .lm_header_menu > ul {
@@ -13,10 +56,7 @@
     margin: 0;
     padding: 0;
     width: 170px;
-   
-  }
-  .lm_header_menu > Dropdown {
-    position: absolute;
+    z-index: 100000 !important; // this is getting out of control  
   }
 
 .lm_header_menu > li{

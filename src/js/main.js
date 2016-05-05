@@ -1,7 +1,7 @@
 'use strict';
 import '../styles/bootstrap.min.css';
 import '../styles/styles.scss';
-import '../styles/goldenlayout-translucent-theme.css';
+import '../styles/goldenlayout-soda-theme.css';
 import '../styles/goldenlayout-base.css';
 
 

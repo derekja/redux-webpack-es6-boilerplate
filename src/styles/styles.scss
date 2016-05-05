@@ -9,6 +9,10 @@ body {
   width: 900px;
 }
 
+.lm_goldenlayout {
+  z-index:0;
+}
+
 .mainContainer {
   display: flex;
   flex-direction: row;

@@ -9,16 +9,18 @@ var actions = require('../../actions/Actions');
 
 function LI(props) {
   return (
+    <div className="MenuItem">
     <MenuItem
-      style={{cursor: 'pointer', userSelect: 'none'}}
       highlightedStyle={{background: 'gray'}}
       onItemChosen={e => {
         console.log(`selected ${props.children}, byKeyboard: ${e.byKeyboard}`);
       }}
       {...props}
     />
+    </div>
   );
 }
+
 
 class Header extends Component {
 
@@ -28,18 +30,17 @@ class Header extends Component {
       <div className="lm_header_menu">
             <MenuButton
               menu={
-                <Dropdown className="lm_header_menu">
+             <div className='MenuList'>
                   <MenuList>
                       <LI>About</LI>
                       <LI>Code</LI>
                       <LI>Map</LI>
                       <LI>Markdown</LI>
-                    <hr style={{margin: '1px 0'}} />
                   </MenuList>
-                </Dropdown>
+                </div>
               }
               >
-              Menu Button
+              MENU
             </MenuButton>
       </div>
     );
