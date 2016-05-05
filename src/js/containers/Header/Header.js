@@ -42,7 +42,6 @@ class Header extends Component {
                       <LI type={types.TileWindow} gl={this.props.gl}>Tile Code</LI>
                       <LI type={types.DocsWindow} gl={this.props.gl}>Docs</LI>
                       <LI type={types.CollectorWindow} gl={this.props.gl}>Collector</LI>
-                      <LI type={types.RunbtnWindow} gl={this.props.gl}>Controls</LI>
                       <LI type={types.ConsoleWindow} gl={this.props.gl}>Console</LI>
                       <LI type={types.MapsWindow} gl={this.props.gl}>Map</LI>
                       <LI type={types.ScriptsWindow} gl={this.props.gl}>Scripts</LI>

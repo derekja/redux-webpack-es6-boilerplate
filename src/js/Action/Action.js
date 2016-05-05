@@ -48,16 +48,6 @@ function NewWindow(window) {
             };
             this.root.contentItems[ 0 ].addChild( newItemConfig2 );
             break;  
-                      
-        case types.RunbtnWindow:
-            console.log("runbtnwindow");
-            let newItemConfig3 = {
-                title: "Controls",
-                type: 'component',
-                componentName: 'Runbtn'
-            };
-            this.root.contentItems[ 0 ].addChild( newItemConfig3 );
-            break;   
                                   
         case types.ConsoleWindow:
             console.log("consolewindow");
