@@ -2,7 +2,7 @@ import './CollectorCode.scss';
 import React, {Component} from 'react';
 import Codemirror from 'react-codemirror';
 import {Button} from 'react-bootstrap';
-import {RunTile} from '../../actions/Actions';
+import {RunTile} from '../../Action/Action';
 
 import 'codemirror/mode/python/python';
 import 'codemirror/lib/codemirror.css';
@@ -26,7 +26,7 @@ class CollectorCode extends Component {
       this.refs.editor.codeMirror.refresh();
       
       const { gl } = this.props;
-      const { glhub } = this.props;
+
       
   }
   updateCode = (newCode) => {
@@ -40,7 +40,8 @@ class CollectorCode extends Component {
   }
   
   btnClick = () => {
-      const { glhub } = this.props;
+      const { gl } = this.props;
+      const glhub = gl.eventHub;
       let txt = this.state.txt;
       console.log("btnClick "+txt);
       glhub.emit('Run_Tile', txt);

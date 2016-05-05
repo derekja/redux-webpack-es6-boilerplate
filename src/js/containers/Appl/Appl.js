@@ -6,9 +6,11 @@ import TileCode from '../TileCode/TileCode';
 import CollectorCode from '../CollectorCode/CollectorCode';
 import Docs from '../Docs/Docs';
 import LMap from '../Map/Map.js';
+import Runbtn from '../Runbtn/Runbtn';
 
 import GoldenLayout from 'imports?React=react&ReactDOM=react-dom!golden-layout';
 
+import { Action } from '../../Action/Action';
 
 
 class Appl extends Component {
@@ -22,10 +24,15 @@ class Appl extends Component {
   componentDidMount() {
 
 
+var RunbtnComp = function(container) {
+  var rb = container.getElement()[ 0 ];
+  ReactDOM.render(<Runbtn gl={myLayout}/>, rb);
+};
+
 
 var TileCodeComp = function(container) {
   var tilecode = container.getElement()[ 0 ];
-  ReactDOM.render(<TileCode gl={myLayout} glhub={myLayout.eventHub}/>, tilecode);
+  ReactDOM.render(<TileCode gl={myLayout}/>, tilecode);
   
 };
 
@@ -64,6 +71,11 @@ var myLayout = new GoldenLayout({
             title: 'Console output',
             ComponentState: { label: 'Console' }
         },{
+            type:'component',
+            componentName: 'Runbtn',
+            title: 'Controls',
+            ComponentState: { label: 'Controls' }
+        },{
             type: 'column',
             content:[{
                 type:'component',
@@ -90,6 +102,7 @@ var myLayout = new GoldenLayout({
     }]
 });
 
+myLayout.registerComponent( 'Runbtn', RunbtnComp );
 myLayout.registerComponent( 'TileCode', TileCodeComp );
 myLayout.registerComponent( 'CollectorCode', CollectorCodeComp );
 myLayout.registerComponent( 'Console', ConsoleComp );
@@ -101,7 +114,7 @@ myLayout.registerComponent( 'LMap', MapComp );
 //Once all components are registered, call
 myLayout.init();
 
-
+Action(myLayout);
 
 
   }
