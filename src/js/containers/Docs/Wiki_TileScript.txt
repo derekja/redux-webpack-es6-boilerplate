@@ -1,0 +1,30 @@
+The tile script is where processing happens for specific urthetiles. A general sequence of events in a tile script is to pull in the bands desired, process those bands in some way, and then render them back to the tile and send some data to the collector. It is not necessary to use a collector script if all processing can take place in the tile script. For instance, NDVI can be performed in a tile script using the following code: \n \n
+
+red = urthetile.get_band('red').ground_reflectance
+nir = urthetile.get_band('near-ir').ground_reflectance
+ \n \n 
+ndvi = (nir-red)/(red+nir)
+ \n \n 
+render.index(ndvi, 'magma', -1.0, 1.0)
+Let's look at the individual lines of code. First, the red and near-ir band data is pulled in, using a utility function to run the transform to provide that as ground reflectance data.
+ \n \n 
+Next, the ndvi calculation is performed (subtracting red from near-ir and dividing that by red plus near-ir)
+ \n \n 
+And then that result is rendered back to the leaflet viewer in the webpage. In this case using a 'magma' color map and scaling the value between -1 and +1. Colormaps are drawn from matplotlib and can be found here (LINK NEEDED).
+
+Aside from ground reflectance, several other transformation utility functions are provided, accessed in the same way as the example above.
+The available transformations are: toa_radiance toa_reflectance ground_reflectance ideal_radiance natural_radiance true_radiance
+ \n \n 
+Although not necessary for a functioning tile script, in order to have a useful collector script information from the individual tiles will have to be sent to the collector script. This is done by means of the collector object:
+ \n \n 
+collector.collect(ndvi)
+ \n \n 
+In this case, the results of the ndvi example above have been sent to the collector for further processing as detailed on the collector scripts page:
+ \n \n 
+collector scripts
+ \n \n 
+For operations on metadata that are not provided by utility functions, specific elements of metadata can be access as described below:
+ \n \n 
+access metadata
+ \n \n 
+back to home

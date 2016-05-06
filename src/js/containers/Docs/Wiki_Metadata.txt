@@ -1,0 +1,496 @@
+'metadata and helper functions
+To access metadata in the dataset use the metadata.get_band function. This data is exposed in the tile script, since that is where the raw band data is processed. For instance:
+m = metadata.get_band('blue')
+
+#Extract metadata
+
+bit_depth = m.bit_depth
+
+gain = m.metadata.rad_gain
+
+offset = m.metadata.rad_offset
+
+wavmax = m.metadata.wavelength_max
+m in the example above takes the form of a metadata dictionary that conforms to the schema at the bottom of this entry.
+In many cases, it will be easier to use helper functions to perform operations on metadata, rather than using the metadata directly. In these cases, it is not necessary to get the metadata at all, as the helper functions are exposed directly on the band.
+red = urthetile.get_band('red')
+The available transformations are:
+	•	toa_radiance
+	•	toa_reflectance
+	•	ground_reflectance
+	•	ideal_radiance
+	•	natural_radiance
+	•	true_radiance
+So, for instance, to get ground reflectance:
+gref_red = red.ground_reflectance
+The operations on metadata performed by each of these built in functions will be described more fully in a future version of this wiki.
+The complete schema for accessing the metadata dictionary is below:
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scene Metadata",
+    "type": "object",
+    "properties": {
+        "schema_version": {
+            "description": "Reflects actual schema version",
+            "type": "string",
+            "additionalProperties": false
+        },
+        "id": {
+            "description": "Unique scene catalog ID",
+            "type": "string",
+            "additionalProperties": false
+        },
+        "owner": {
+            "description": "For attribution and tracking purposes",
+            "type": "string",
+            "enum": ["urthecast", "usgs", "satrec-initiative"],
+            "additionalProperties": false
+        },
+        "owner_scene_id": {
+            "description": "This is the scene ID used by the OWNER",
+            "type": "string",
+            "additionalProperties": false
+        },
+        "owner_scene_url": {
+            "description": "This is the URL of the OWNER's scene",
+            "type": "string",
+            "additionalProperties": false
+        },
+        "owner_archive_id": {
+            "description": "This is the ID of the OWNER archive",
+            "type": "string",
+            "additionalProperties": false
+        },
+        "archive_url": {
+            "description": "This is the URL of the scene in the archive",
+            "type": "string",
+            "additionalProperties": false
+        },
+        "platform": {
+            "description": "Identifies the platform (satellite) on which the sensor platform is carried",
+            "type": "string",
+            "enum": ["iss", "landsat-8", "deimos-1"],
+            "additionalProperties": false
+        },
+        "satellite_id": {
+            "description": "Identifies the satellite on which the sensor is carried as defined by NORAD",
+            "type": "number",
+            "additionalProperties": false
+        },
+        "sensor_platform": {
+            "description": "Identifies the platform on which the sensor is carried",
+            "type": "string",
+            "enum": ["theia", "landsat-8", "deimos-1"],
+            "additionalProperties": false
+        },
+        "cloud_coverage": {
+            "description": "Percent (0-100) cloud coverage. Calculated from cloud mask.",
+            "type": ["number", "null"],
+            "additionalProperties": false
+        },
+        "haze_coverage": {
+            "description": "Percent (0-100) haze coverage. Calculated from haze mask.",
+            "type": "number",
+            "additionalProperties": false
+        },
+        "snow_coverage": {
+            "description": "Percent (0-100) snow coverage.Calculated from snow mask.",
+            "type": "number",
+            "additionalProperties": false
+        },
+        "sun_azimuth": {
+            "description": "Azimuth angle (dec deg, -180 to +180) clockwise from north to the sun at scene center.",
+            "type": "number",
+            "additionalProperties": false
+        },
+        "sun_elevation": {
+            "description": "Elevation angle (dec deg, 0 to 90) from horizon to the sun at scene center.",
+            "type": "number",
+            "additionalProperties": false
+        },
+        "season": {
+            "description": "The hemispherical-specific season determined by latitude and time of year relative to the four annual solstices.",
+            "type": ["string"],
+            "enum": ["winter", "spring", "summer", "fall"],
+            "additionalProperties": false
+        },
+        "sensor_azimuth": {
+            "description": "Azimuth angle (dec deg, -180 to +180) clockwise from north to the sensor at scene center. Set to 0 deg for a Sensor Elevation Angle of 90.",
+            "type": "number",
+            "additionalProperties": false
+        },
+        "sensor_elevation": {
+            "description": "Elevation angle (dec deg, 0 to 90) from horizon to the sensor at scene center.",
+            "type": "number",
+            "additionalProperties": false
+        },
+        "sensor_altitude": {
+            "description": "Altitude (m) of the sensor at scene center, relative to WGS84 above MSL.",
+            "type": "number",
+            "additionalProperties": false
+        },
+        "sensor_roll": {
+            "description": "Sensor roll angle (dec deg, -90 to +90) relative to the platform direction of motion.",
+            "type": "number",
+            "additionalProperties": false
+        },
+        "sensor_pitch": {
+            "description": "Sensor pitch angle (dec deg, -90 to +90) relative to the platform direction of motion.",
+            "type": "number",
+            "additionalProperties": false
+        },
+        "sensor_yaw": {
+            "description": "Sensor yaw angle (dec deg, -90 to +90) relative to the platform direction of motion.",
+            "type": "number",
+            "additionalProperties": false
+        },
+        "average_scene_altitude": {
+            "description": "Altitude (m) of the scene, averaged over the 4 corners and center, relative to WGS84 above MSL",
+            "type": "number",
+            "additionalProperties": false
+        },
+        "model_rmse": {
+            "description": "Root mean squared circular error (m) of the geometric model.",
+            "type": ["number", "null"],
+            "additionalProperties": false
+        },
+        "model_pixel_rmse": {
+            "description": "Root mean squared linear error (m) of the geometric model in the pixel (X) direction.",
+            "type": ["number", "null"],
+            "additionalProperties": false
+        },
+        "model_line_rmse": {
+            "description": "Root mean squared linear error (m) of the geometric model in the line (Y) direction.",
+            "type": ["number", "null"],
+            "additionalProperties": false
+        },
+        "indexed": {
+            "description": "UTC date and time that the scene was imported to the archive. YYYY-MM-DDTHH:MM:SS.sssZ (ISO 8601)",
+            "type": "string",
+            "pattern": "[1-9][0-9]{3}-(1[0-2]|0[0-9])-(0[0-9]|[1-2][0-9]|3[0-1])T([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\.([0-9]{3})Z$",
+            "additionalProperties": false
+        },
+        "archived": {
+            "description": "UTC date and time the the scene was added to the scene catalog. YYYY-MM-DDTHH:MM:SS.sssZ (ISO 8601)",
+            "type": "string",
+            "pattern": "[1-9][0-9]{3}-(1[0-2]|0[0-9])-(0[0-9]|[1-2][0-9]|3[0-1])T([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\.([0-9]{3})Z$",
+            "additionalProperties": false
+        },
+        "tiled": {
+            "description": "UTC date and time the the scene was tiled. YYYY-MM-DDTHH:MM:SS.sssZ (ISO 8601)",
+            "type": "string",
+            "pattern": "[1-9][0-9]{3}-(1[0-2]|0[0-9])-(0[0-9]|[1-2][0-9]|3[0-1])T([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\.([0-9]{3})Z$",
+            "additionalProperties": false
+        },
+        "published": {
+            "description": "UTC date and time that the scene was approved for external viewing. If null, the scene is not published. YYYY-MM-DDTHH:MM:SS.sssZ (ISO 8601)",
+            "type": ["string", "null"],
+            "pattern": "[1-9][0-9]{3}-(1[0-2]|0[0-9])-(0[0-9]|[1-2][0-9]|3[0-1])T([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\.([0-9]{3})Z$",
+            "additionalProperties": false
+        },
+        "acquired": {
+            "description": "UTC date and time at the center of the image. YYYY-MM-DDTHH:MM:SS.sssZ (ISO 8601) Note: look into start and end imaging times as may be useful",
+            "type": "string",
+            "pattern": "[1-9][0-9]{3}-(1[0-2]|0[0-9])-(0[0-9]|[1-2][0-9]|3[0-1])T([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\.([0-9]{3})Z$",
+            "additionalProperties": false
+        },
+        "processed": {
+            "description": "UTC date and time of owner processing. YYYY-MM-DDTHH:MM:SS.sssZ (ISO 8601)",
+            "type": "string",
+            "pattern": "[1-9][0-9]{3}-(1[0-2]|0[0-9])-(0[0-9]|[1-2][0-9]|3[0-1])T([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\.([0-9]{3})Z$",
+            "additionalProperties": false
+        },
+        "solar_time_of_day_acquired": {
+            "description": "The relative time of day based on sun position. Format HH:MM:SS.sss",
+            "type": "string",
+            "pattern": "[0-1][0-9]|2[0-3]:([0-5][0-9]):([0-5][0-9])$",
+            "additionalProperties": false
+        },
+        "earth_sun_distance": {
+            "description": "The distance between the sun and the earth in AUs",
+            "type": "number",
+            "additionalProperties": false
+        },
+        "geometry": {
+            "$ref": "#/definitions/geometry"
+        },
+        "sensor_data": {
+            "id": "#sensor_data",
+            "description": "The metadata specific to individual bands.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/sensorBand"
+            }
+        }
+    },
+    "definitions": {
+        "geometry": {
+            "description": "The geographic boundary of the image data within the scene.",
+            "title": "GeoJson Boundary",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "enum": ["Polygon"]
+                },
+                "coordinates": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number"
+                            }
+                        },
+                        "minItems": 4
+                    }
+                }
+            },
+            "required": ["type", "coordinates"]
+        },
+        "sensorBand": {
+            "description": "The metadata specific to individual bands.",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "band": {
+                    "description": "The friendly name/id denoting the type of band based on UrtheCast classification.",
+                    "type": "string",
+                    "pattern": "ultraviolet-c|ultraviolet-b|ultraviolet-a|violet|coastal-blue|blue|cyan|green|yellow|orange|red|red-edge|pan|near-ir|short-wave-ir|mid-wave-ir|long-wave-ir|very-long-wave-ir|ka-band|k-band|ku-band|x-band|c-band|s-band|l-band|p-band-?[0-9]?$",
+                    "additionalProperties": false
+                },
+                "file_name": {
+                    "description": "The name of the urthetile source sensor/data ortho file. Filenames should use values from 'band_name'. If a file contains multiple bands, the corresponding band_names should be concatinated using the underscore. All file extensions should be .tif",
+                    "type": "string",
+                    "additionalProperties": false
+                },
+                "band_number": {
+                    "description": "The integer location of the band in the urthetile source sensor/data ortho file.",
+                    "type": "integer",
+                    "additionalProperties": false
+                },
+                "owner_band_name": {
+                    "description": "The exact string name for the band designated by the OWNER",
+                    "type": "string",
+                    "additionalProperties": false
+                },
+                "owner_file_name": {
+                    "description": "The name of the scene bundle source sensor/data ortho file.",
+                    "type": "string",
+                    "additionalProperties": false
+                },
+                "owner_band_number": {
+                    "description": "The integer location of the band in the scene bundle source sensor/data ortho file.",
+                    "type": "integer",
+                    "additionalProperties": false
+                },
+                "sensor": {
+                    "description": "Identifies the sensor used to acquire the imagery",
+                    "type": "string",
+                    "enum": ["theia", "oli", "tirs"],
+                    "additionalProperties": false
+                },
+                "ground_sample_distance": {
+                    "description": "Ground sample distance at scene center in meters (native - does not take pansharpening into account).",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "ground_sample_distance_pan": {
+                    "description": "Ground sample distance at scene center in meters pan-sharpenable bands..",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "min_zoom_level": {
+                    "description": "Google Map Tile min zoom level",
+                    "type": "integer",
+                    "additionalProperties": false
+                },
+                "max_zoom_level": {
+                    "description": "Google Map Tile max zoom level (non-pansharpened)",
+                    "type": "integer",
+                    "additionalProperties": false
+                },
+                "max_zoom_level_pan": {
+                    "description": "Google Map Tile max zoom level for pan-sharpenable bands.",
+                    "type": "integer",
+                    "additionalProperties": false
+                },
+                "ut_max_zoom_level": {
+                    "description": "UrtheTile max zoom level of the ortho imagery (non-pansharpened).",
+                    "type": "integer",
+                    "additionalProperties": false
+                },
+                "ut_max_zoom_level_pan": {
+                    "description": "UrtheTile max zoom level of the ortho imagery for pan-sharpenable bands.",
+                    "type": "integer",
+                    "additionalProperties": false
+                },
+                "ut_min_zoom_level": {
+                    "description": "UrtheTile min zoom level of the ortho imagery.",
+                    "type": "integer",
+                    "additionalProperties": false
+                },
+                "compression_method": {
+                    "description": "The method of compression at the UrtheTile level.",
+                    "type": "string",
+                    "enum": ["none", "LZW", "JP2", "ECW"],
+                    "additionalProperties": false
+                },
+                "compression_level": {
+                    "description": "The level of compression used in the compression method",
+                    "type": "string",
+                    "additionalProperties": false
+                },
+                "bit_depth": {
+                    "description": "Maximum bit depth of a single pixel.",
+                    "type": "integer",
+                    "additionalProperties": false
+                },
+                "data_type": {
+                    "description": "The data type of the UrtheTile.",
+                    "type": "string",
+                    "enum": ["Byte", "Int16", "UInt16", "UInt32", "Int32", "Float32", "Float64", "CInt16", "CInt32", "CFloat32", "CFloat64"],
+                    "additionalProperties": false
+                },
+                "metadata": {
+                    "$ref": "#/definitions/sensorMetadata"
+                }
+            },
+            "required": ["band", "file_name", "band_number", "owner_band_name", "owner_file_name", "owner_band_number", "ground_sample_distance", "min_zoom_level", "max_zoom_level", "ut_max_zoom_level", "ut_min_zoom_level", "bit_depth", "data_type"]
+        },
+        "sensorMetadata": {
+            "description": "The band specific radiometric metadata.",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "wavelength_max": {
+                    "description": "Maximum wavelength (nm).",
+                    "type": "integer",
+                    "additionalProperties": false
+                },
+                "wavelength_min": {
+                    "description": "Minimum wavelength (nm).",
+                    "type": "integer",
+                    "additionalProperties": false
+                },
+                "rad_gain": {
+                    "description": "Radiance conversion gain coefficient (W/m2/sr/DN).",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "rad_offset": {
+                    "description": "Radiance conversion offset coefficient (W/m2/sr).",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "rad_max": {
+                    "description": "Maximum radiance (W/m2/sr).",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "rad_min": {
+                    "description": "Minimum radiance (W/m2/sr).",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "rad_ideal_a": {
+                    "description": "Coefficients for calculating L ideal from Ï",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "rad_ideal_b": {
+                    "description": "Coefficients for calculating L ideal from Ï",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "rad_ideal_c": {
+                    "description": "Coefficients for calculating L ideal from Ï",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "rad_natural_a": {
+                    "description": "Coefficients for calculating L natural from Ï",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "rad_natural_b": {
+                    "description": "Coefficients for calculating L natural from Ï",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "rad_natural_c": {
+                    "description": "Coefficients for calculating L natural from Ï",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "rad_true_a": {
+                    "description": "Coefficients for calculating L true from Ï",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "rad_true_b": {
+                    "description": "Coefficients for calculating L true from Ï",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "rad_true_c": {
+                    "description": "Coefficients for calculating L true from Ï",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "ground_refl_a": {
+                    "description": "Coefficients for calculating Ï from ToA L",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "ground_refl_b": {
+                    "description": "Coefficients for calculating Ï from ToA L",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "ground_refl_c": {
+                    "description": "Coefficients for calculating Ï from ToA L",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "refl_gain": {
+                    "description": "Reflectance conversion gain coefficient (1/DN).",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "refl_offset": {
+                    "description": "Reflectance conversion offset coefficient (unitless).",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "refl_max": {
+                    "description": "Maximum reflectance (unitless) corresponding to the maximum radiance.",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "refl_min": {
+                    "description": "Minimum reflectance (unitless) corresponding to the minimum radiance.",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "k1": {
+                    "description": "",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "k2": {
+                    "description": "",
+                    "type": "number",
+                    "additionalProperties": false
+                },
+                "dn_darkpoint": {
+                    "description": "DN value corresponding to 0.1% of the cumulative histogram of DN values",
+                    "type": "integer",
+                    "additionalProperties": false
+                }
+            }
+        }
+    },
+    "required": ["id", "schema_version", "owner", "owner_scene_id", "sensor_platform", "cloud_coverage"]
+}
+'

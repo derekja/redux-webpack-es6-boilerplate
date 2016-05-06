@@ -78,6 +78,7 @@
     "markdown-it-sup": "1.0.0",
     "precss": "1.4.0",
     "qwest": "4.3.2",
+    "raw-loader": "0.5.1",
     "react": "0.14.7",
     "react-bootstrap": "0.29.2",
     "react-codemirror": "0.2.6",
@@ -86,6 +87,7 @@
     "react-menu-list": "2.0.0",
     "react-redux": "4.4.0",
     "react-router": "2.0.0",
+    "react-scroll": "1.0.15",
     "redux": "3.3.1"
   }
 }
