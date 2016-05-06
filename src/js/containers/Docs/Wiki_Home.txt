@@ -1,3 +1,32 @@
-##### URTHECAST DEVELOPMENT PLAYGROUND
+# Urthecast development playground
 
-The algorithms test kitchen is designed to allow quick experimentation with urthecast data in a flexible programming environment that requires virtually no setup. The user interface is at a very early stage and will change significantly over the coming weeks, but it is already functional. The playground can be accessed at [http://urthecast-rd.dev.urthecast.com/viewer/](http://urthecast-rd.dev.urthecast.com/viewer/) \n \n If you do not have access then please submit a request with your IP address. Soon it will be driven by gitlab permissions instead of needing a whitelist of IPs. \n \n The scripts are written in python, version 2.7.5, and the programming model is based on a MapReduce paradigm. The tile script is executed on each individual tile in the request. (A request is currently the viewport in the web browser, although this will be expanded in the future.) Each tile script can send data to the collector. The collector is executed across the set of tiles when all results in the request have been returned. \n \n Currently, when the scripts are updated (both tile and collector) the user will push the "update algorithms" button and the tile script will begin to execute on each tile in the request. When the user presses the "view results" button the collector script will be executed.
+The algorithms test kitchen is designed to allow quick experimentation with urthecast data in a flexible programming environment that requires virtually no setup. The user interface is at a very early stage and will change significantly over the coming weeks, but it is already functional. The playground can be accessed at:
+
+http://urthecast-rd.dev.urthecast.com/viewer/
+
+If you do not have access then please submit a request with your IP address. Soon it will be driven by gitlab permissions instead of needing a whitelist of IPs.
+
+The scripts are written in python, version 2.7.5, and the programming model is based on a MapReduce paradigm. The tile script is executed on each individual tile in the request. (A request is currently the viewport in the web browser, although this will be expanded in the future.) Each tile script can send data to the collector. The collector is executed across the set of tiles when all results in the request have been returned.
+
+Currently, when the scripts are updated (both tile and collector) the user will push the "update algorithms" button and the tile script will begin to execute on each tile in the request. When the user presses the "view results" button the collector script will be executed.
+
+The tile script has functions to pull in band data and metadata, and it can output to the console window in the web page, the leaflet viewer in the web page, and the collector script, as described in the section below: 
+
+[tile scripts](https://gitlab.urthecast.com/ResearchAndDataScience/Playground-Application/wikis/tile-scripts)
+
+The collector script has the ability to receive data from the tile scripts and to run its algorithm across that set of data. It can output to the console window in the web page and to an image overlay. The collector script capabilities are described below:
+
+[collector scripts](https://gitlab.urthecast.com/ResearchAndDataScience/Playground-Application/wikis/collector-scripts)
+
+These two scripts can be put together into a simple working example as shown below:
+
+[simple example](https://gitlab.urthecast.com/ResearchAndDataScience/Playground-Application/wikis/simple-example)
+
+A more complex example is shown which uses scikit-learn to create a classifier in the collector script. This example is not yet fully integrated with the data from Urthecast and instead depends on files with imagery and training data.
+
+[scikit example](https://gitlab.urthecast.com/ResearchAndDataScience/Playground-Application/wikis/scikit-example)
+
+A more realistic scenario using forest fire data is proposed which will draw it's data from urthecast, but this is not yet complete.
+
+[forest fire example](https://gitlab.urthecast.com/ResearchAndDataScience/Playground-Application/wikis/forest-fire-example)
+
